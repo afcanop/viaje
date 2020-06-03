@@ -1,42 +1,92 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Log in!{% endblock %}
-
+{% extends 'bases/login.html.twig' %}
 {% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+    <div id="app">
+        <section class="section">
+            <div class="d-flex flex-wrap align-items-stretch">
+                <div class="col-lg-4 col-md-6 col-12 order-lg-1 min-vh-100 order-2 bg-white">
+                    <div class="p-4 m-3">
+                        <img src="https://s3-ap-southeast-2.amazonaws.com/apac-production-wp/app/uploads/2017/08/19083003/logo-placeholder-1.png"
+                             alt="logo" class="shadow-light  img-fluid rounded mb-3 mt-2">
+                        <h4 class="text-dark font-weight-normal">Bienvenido a <span
+                                    class="font-weight-bold">Viaje v.1.0</span></h4>
+                        <p class="text-muted">Antes de comenzar, debe iniciar sesión o registrarse si aún no tiene una
+                            cuenta.</p>
+                        {#                        //formuelario#}
+                        <form method="POST" action="#" class="needs-validation" novalidate="">
+                            {% if error %}
+                                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                            {% endif %}
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
+                            <div class="form-group">
+                                <label for="inputEmail">Email</label>
+                                <input type="email" value="{{ last_username }}" name="email" id="inputEmail"
+                                       tabindex="1" class="form-control" required autofocus>
+                                <div class="invalid-feedback">Por favor complete su correo electrónico</div>
+                            </div>
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" required>
+                            <div class="form-group">
+                                <label for="inputPassword">Password</label>
+                                <input type="password" name="password" id="inputPassword" tabindex="2"
+                                       class="form-control" required>
+                                <div class="invalid-feedback">por favor complete su contraseña</div>
+                            </div>
+                            <input type="hidden" name="_csrf_token"
+                                   value="{{ csrf_token('authenticate') }}"
+                            >
+                            {#
+                                Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                                See https://symfony.com/doc/current/security/remember_me.html
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+                                <div class="checkbox mb-3">
+                                    <label>
+                                        <input type="checkbox" name="_remember_me"> Remember me
+                                    </label>
+                                </div>
+                            #}
 
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
 
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
-        </div>
-    #}
+                            <div class="form-group text-right">
+{#                                <a href="auth-forgot-password.html" class="float-left mt-3">#}
+{#                                    Forgot Password?#}
+{#                                </a>#}
+                                <button type="submit" class="btn btn-primary btn-lg btn-icon icon-right" tabindex="4">
+                                    INGRESAR
+                                </button>
+                            </div>
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
+                            <div class="mt-5 text-center">
+                                ¿No tengo una cuenta? <a href="{{ path('app_register') }}">Crear</a>
+                            </div>
+                        </form>
+
+{#                        <div class="text-center mt-5 text-small">#}
+{#                            Copyright &copy; Your Company. Made with ðŸ’™ by Stisla#}
+{#                            <div class="mt-2">#}
+{#                                <a href="#">Privacy Policy</a>#}
+{#                                <div class="bullet"></div>#}
+{#                                <a href="#">Terms of Service</a>#}
+{#                            </div>#}
+{#                        </div>#}
+                    </div>
+                </div>
+                <div class="col-lg-8 col-12 order-lg-2 order-1 min-vh-100 background-walk-y position-relative overlay-gradient-bottom"
+                     data-background="https://images.unsplash.com/photo-1510797215324-95aa89f43c33?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80">
+                    <div class="absolute-bottom-left index-2">
+                        <div class="text-light p-5 pb-2">
+                            <div class="mb-5 pb-3">
+                                <h1 class="mb-2 display-4 font-weight-bold">Good Morning</h1>
+                                <h5 class="font-weight-normal text-muted-transparent">Bali, Indonesia</h5>
+                            </div>
+                            Photo by <a class="text-light bb" target="_blank"
+                                        href="https://unsplash.com/photos/a8lTjWJJgLA">Justin Kauffman</a> on <a
+                                    class="text-light bb" target="_blank" href="https://unsplash.com">Unsplash</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
 {% endblock %}
+
+

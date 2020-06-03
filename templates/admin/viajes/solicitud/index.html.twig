@@ -1,1 +1,71 @@
-{% extends "base.html.twig" %}
+{% extends "bases/base_admin.html.twig" %}
+{% block body %}
+    <div class="section-header">
+        <h4><i>Solicitud</i></h4>
+        <div class="section-header-breadcrumb">
+            <a href="{{ path('solicitud_nuevo') }}" class="btn" title="nuevo Registro">
+                <img class="icon" src="https://img.icons8.com/nolan/45/create-new.png"/>
+            </a>
+        </div>
+    </div>
+    <div class="section-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Lista</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive table-invoice">
+                            <table class="table table-md">
+                                <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">NÚMERO CONTACTO</th>
+                                    <th scope="col">CONTACTO</th>
+                                    <th scope="col">FECHA</th>
+                                    <th scope="col">APR</th>
+                                    <th scope="col" colspan="3"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tbody>
+                                {% for arrSolicitud in arrSolicitudes %}
+                                    <tr>
+                                        <td>{{ arrSolicitud.id }}</td>
+                                        <td>{{ arrSolicitud.numeroContacto }}</td>
+                                        <td>{{ arrSolicitud.Contacto }}</td>
+                                        <td>{{ arrSolicitud.fechaSolicitud | date("Y-m-d") }}</td>
+                                        <td>{{ arrSolicitud.estadoAprobado ? "SI" : "NO" }}</td>
+                                        <td>
+                                            <a href="{{ path('solicitud_detalle', {'id':arrSolicitud.id}) }}" class="btn" title="Información del registro">
+                                                <img class="icon" src="https://img.icons8.com/nolan/40/view-details.png"/>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('solicitud_editar', {'id':arrSolicitud.id}) }}" class="btn" title="Editar del registro">
+                                                <img class="icon" src="https://img.icons8.com/nolan/40/edit--v1.png"/>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <form method="post" action="{{ path('solicitud_delete', {'id': arrSolicitud.id}) }}"
+                                                  onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ arrSolicitud.id) }}">
+                                                <button  class="btn" title="Borrar registro">
+                                                    <img class="icon" src="https://img.icons8.com/nolan/40/delete.png"/>
+                                                </button>
+                                            </form>
+
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

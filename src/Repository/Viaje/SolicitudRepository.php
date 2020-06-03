@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository\Viajes;
+namespace App\Repository\Viaje;
 
 use App\Entity\Viaje\Solicitud;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
