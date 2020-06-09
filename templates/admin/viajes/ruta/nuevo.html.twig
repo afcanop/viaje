@@ -1,10 +1,10 @@
 {% extends "bases/base_admin.html.twig" %}
-{% block title %}Solicitud nueva{% endblock %}
+{% block title %}Ruta nueva{% endblock %}
 {% block body %}
     <div class="section-header">
         <h4><i>Solicitud</i></h4>
         <div class="section-header-breadcrumb">
-            <a href="{{ path('solicitud_index') }}" class="btn" title="Regresar a la lista">
+            <a href="{{ path('ruta_index') }}" class="btn" title="Regresar a la lista">
                 <img class="icon" src="https://img.icons8.com/nolan/45/undo.png"/>
             </a>
         </div>
@@ -18,14 +18,14 @@
                     </div>
                     <div class="card-body">
                         {{ form_start(form) }}
-                            <div class="row">
-                                <div class="col-md-6">
-                                    {{ form_row(form.Contacto) }}
-                                </div>
-                                <div class="col-md-6">
-                                    {{ form_row(form.numeroContacto) }}
-                                </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                {{ form_row(form.Abrebiatura) }}
                             </div>
+                            <div class="col-md-6">
+                                {{ form_row(form.nombreCompleto) }}
+                            </div>
+                        </div>
                         {{ form_end(form) }}
                     </div>
                 </div>

@@ -54,9 +54,9 @@ class SolicitudController extends AbstractController
     }
 
     /**
-     * @Route("editar/{id}/", name="solicitud_editar", methods={"GET","POST"})
+     * @Route("editar/{id}/", name="solicitud_editar")
      */
-    public function edit(Request $request, Solicitud $arRegistro)
+    public function editar(Request $request, Solicitud $arRegistro)
     {
         $form = $this->createForm(SolicitudType::class, $arRegistro);
         $form->handleRequest($request);
@@ -88,7 +88,7 @@ class SolicitudController extends AbstractController
 
 
     /**
-     * @Route("/{id}", name="solicitud_delete", methods={"DELETE"})
+     * @Route("/{id}", name="solicitud_eliminar", methods={"DELETE"})
      */
     public function delete(Request $request, Solicitud $registro){
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Viaje;
 
-use App\Repository\RutaRepository;
+use App\Repository\Viaje\RutaRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**

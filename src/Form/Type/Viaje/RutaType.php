@@ -2,8 +2,9 @@
 
 namespace App\Form;
 
-use App\Entity\Ruta;
+use App\Entity\Viaje\Ruta;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,7 +15,7 @@ class RutaType extends AbstractType
         $builder
             ->add('nombreCompleto')
             ->add('Abrebiatura')
-        ;
+            ->add('btnGuardar', SubmitType::class, ['label' => 'Guardar', 'attr'=>['class'=>'btn btn-primary']]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
