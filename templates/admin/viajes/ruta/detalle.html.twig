@@ -1,30 +1,44 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Ruta{% endblock %}
-
+{% extends "bases/base_admin.html.twig" %}
+{% block title %}Ruta detalle{% endblock %}
 {% block body %}
-    <h1>Ruta</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ rutum.id }}</td>
-            </tr>
-            <tr>
-                <th>NombreCompleto</th>
-                <td>{{ rutum.nombreCompleto }}</td>
-            </tr>
-            <tr>
-                <th>Abrebiatura</th>
-                <td>{{ rutum.Abrebiatura }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('ruta_index') }}">back to list</a>
-
-    <a href="{{ path('ruta_edit', {'id': rutum.id}) }}">edit</a>
-
-    {{ include('ruta/_delete_form.html.twig') }}
+    <div class="section-header">
+        <h4><i>Ruta</i></h4>
+        <div class="section-header-breadcrumb">
+            <a href="{{ path('ruta_index') }}" class="btn" title="Regresar a la lista">
+                <img class="icon" src="https://img.icons8.com/nolan/45/undo.png"/>
+            </a>
+        </div>
+    </div>
+    <div class="section-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Detalle</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive table-invoice">
+                            <table class="table table-md">
+                                <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">ABREBIATURA</th>
+                                    <th scope="col">NOMBRE</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tbody>
+                                <tr>
+                                    <td>{{ arRegistro.id }}</td>
+                                    <td>{{ arRegistro.Abrebiatura }}</td>
+                                    <td>{{ arRegistro.nombreCompleto }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

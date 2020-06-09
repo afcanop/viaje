@@ -47,13 +47,24 @@ class RutaController extends AbstractController
         ]);
 
     }
+
     /**
-     * @Route("editar/{id}/", name="ruta_editar")
+     * @Route("/editar/{id}/", name="ruta_editar")
      */
     public function editar(Request $request, Ruta $arRegistro)
     {
-        return $this->render('admin/viajes/ruta/ed.html.twig', [
+        $form = $this->createForm(RutaType::class, $arRegistro);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('ruta_index');
+        }
+        return $this->render('admin/viajes/ruta/nuevo.html.twig', [
             'arRegistro' => $arRegistro,
+            'form' => $form->createView(),
+
         ]);
     }
     /**
